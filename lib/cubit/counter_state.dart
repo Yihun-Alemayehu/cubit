@@ -3,8 +3,10 @@ part of 'counter_cubit.dart';
 
 class CounterState {
   int counter;
+  bool isIncremened;
 
   CounterState(
     this.counter,
+    this.isIncremened,
   );
 }
