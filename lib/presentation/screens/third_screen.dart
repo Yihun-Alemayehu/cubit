@@ -1,16 +1,16 @@
 import 'package:bloc_concepts_2/logic/cubit/counter_cubit.dart';
-import 'package:bloc_concepts_2/presentation/screens/second_screen.dart';
+import 'package:bloc_concepts_2/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class ThirdScreen extends StatefulWidget {
+  const ThirdScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ThirdScreen> createState() => _ThirdScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _ThirdScreenState extends State<ThirdScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.amber.shade600,
+                    backgroundColor: Colors.deepPurple,
                   ),
                   onPressed: () {
                     context.read<CounterCubit>().increment();
@@ -42,7 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 TextButton(
                   style: TextButton.styleFrom(
-                    backgroundColor: Colors.amber.shade600,
+                    backgroundColor: Colors.deepPurple,
                   ),
                   onPressed: () {
                     // context.read<CounterCubit>().decrement();
@@ -53,17 +53,15 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
             MaterialButton(
-              color: Colors.amber.shade900,
+              color: Colors.deepPurpleAccent,
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (_) => BlocProvider.value(
-                        value: BlocProvider.of<CounterCubit>(context),
-                        child: const SecondScreen()),
+                    builder: (context) => const HomeScreen(),
                   ),
                 );
               },
-              child: const Text('Go to Second Screen'),
+              child: const Text('Go to Home Screen'),
             )
           ],
         ),
