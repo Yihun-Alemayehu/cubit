@@ -6,17 +6,46 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(
-    BlocProvider(
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final CounterCubit _counterCubit = CounterCubit();
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
       create: (context) => CounterCubit(),
-      child:  MaterialApp(
+      child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/' :(context) => const HomeScreen(),
-          '/second' :(context) => const SecondScreen(),
-          '/third' :(context) => const ThirdScreen(),
+          '/': (context) => BlocProvider.value(
+                value: _counterCubit,
+                child: const HomeScreen(),
+              ),
+          '/second': (context) => BlocProvider.value(
+                value: _counterCubit,
+                child: const SecondScreen(),
+              ),
+          '/third': (context) => BlocProvider.value(
+                value: _counterCubit,
+                child: const ThirdScreen(),
+              ),
         },
       ),
-    ),
-  );
+    );
+  }
+
+  @override
+  void dispose() {
+    _counterCubit.close();
+    super.dispose();
+  }
 }
