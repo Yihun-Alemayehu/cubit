@@ -21,25 +21,22 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => CounterCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/': (context) => BlocProvider.value(
-                value: _counterCubit,
-                child: const HomeScreen(),
-              ),
-          '/second': (context) => BlocProvider.value(
-                value: _counterCubit,
-                child: const SecondScreen(),
-              ),
-          '/third': (context) => BlocProvider.value(
-                value: _counterCubit,
-                child: const ThirdScreen(),
-              ),
-        },
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      routes: {
+        '/': (context) => BlocProvider.value(
+              value: _counterCubit,
+              child: const HomeScreen(),
+            ),
+        '/second': (context) => BlocProvider.value(
+              value: _counterCubit,
+              child: const SecondScreen(),
+            ),
+        '/third': (context) => BlocProvider.value(
+              value: _counterCubit,
+              child: const ThirdScreen(),
+            ),
+      },
     );
   }
 

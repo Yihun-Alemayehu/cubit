@@ -1,5 +1,4 @@
 import 'package:bloc_concepts_2/logic/cubit/counter_cubit.dart';
-import 'package:bloc_concepts_2/presentation/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -55,14 +54,17 @@ class _SecondScreenState extends State<SecondScreen> {
             MaterialButton(
               color: Colors.blue,
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ),
-                );
+                Navigator.of(context).pushNamed('/');
               },
               child: const Text('Go to Home Screen'),
-            )
+            ),
+            MaterialButton(
+              color: Colors.blue,
+              onPressed: () {
+                Navigator.of(context).pushNamed('/third');
+              },
+              child: const Text('Go to Third Screen'),
+            ),
           ],
         ),
       ),
