@@ -9,40 +9,21 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  final CounterCubit _counterCubit = CounterCubit();
-
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => BlocProvider.value(
-              value: _counterCubit,
-              child: const HomeScreen(),
-            ),
-        '/second': (context) => BlocProvider.value(
-              value: _counterCubit,
-              child: const SecondScreen(),
-            ),
-        '/third': (context) => BlocProvider.value(
-              value: _counterCubit,
-              child: const ThirdScreen(),
-            ),
-      },
+    return BlocProvider<CounterCubit>(
+      create: (context) => CounterCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        routes: {
+          '/': (context) => const HomeScreen(),
+          '/second': (context) => const SecondScreen(),
+          '/third': (context) => const ThirdScreen(),
+        },
+      ),
     );
-  }
-
-  @override
-  void dispose() {
-    _counterCubit.close();
-    super.dispose();
   }
 }
